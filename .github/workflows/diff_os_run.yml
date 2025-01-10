@@ -19,23 +19,10 @@ jobs:
   my_job:
     runs-on: ubuntu-latest # Specify the runner environment
     steps:
-      - uses: actions/checkout@v3 # Check out the repository code
+      #- uses: actions/checkout@v3 # Check out the repository code
       - name: Run Shell Command
         run: |
           echo "Hello from GitHub Actions!"
           ls -l # List files in the current directory
 
-  Run-PSScriptAnalyzer-on-Windows:
-    name: Run PSScriptAnalyzer on Windows
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install PSScriptAnalyzer module
-        shell: pwsh
-        run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module PSScriptAnalyzer -ErrorAction Stop
-      - name: Get list of rules
-        shell: pwsh
-        run: |
-          Get-ScriptAnalyzerRule
+  
