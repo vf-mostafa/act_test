@@ -16,30 +16,15 @@ jobs:
           node-version: '14'
       - run: npm help
   
-  Run-shell-script:
-    name: Nix Shell
-    runs-on: ubuntu-latest
+  my_job:
+    runs-on: ubuntu-latest # Specify the runner environment
     steps:
-  # You may pin to the exact commit or the version.
-  # uses: workflow/nix-shell-action@5fdff26c1325df635247f72cba79ffc370303fdb
-      - uses: workflow/nix-shell-action@v3.4.0
-        with:
-    # Interpreter to use in the nix shell shebang
-          interpreter: bash # optional, default is bash
-    # Comma-separated list of packages to pre-install in your shell. Defaults to simply "bash". Cannot be used together with the flakes option
-          packages: bash# optional, default is bash
-    # Comma-separated list of fully qualified flakes to pre-install in your shell. Use either packages or flakes. Cannot be used together with the packages option
-    #flakes: # optional, default is 
-    # If set to true, uses devShell instead.
-    #flakes-from-devshell: # optional
-    # If set, uses a customly named devShell from the current flake
-    #custom-devshell: # optional, default is 
-    # The actual script to execute in the shell
-          script: /bin/ls
-    # Execute the script inside the specified working directory instead of the repository root. Example: path/to/dir
-          #working-directory: # optional
+      - uses: actions/checkout@v3 # Check out the repository code
+      - name: Run Shell Command
+        run: |
+          echo "Hello from GitHub Actions!"
+          ls -l # List files in the current directory
 
-          
   Run-PSScriptAnalyzer-on-Windows:
     name: Run PSScriptAnalyzer on Windows
     runs-on: windows-latest
